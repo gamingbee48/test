@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Knopfseite</title>
+	<style>
+		.center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+		.button {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			background-color: red;
+			border: none;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="center">
+		<button class="button" id="knopf" onclick="neuerKnopf()"></button>
+	</div>
+	
+	<script>
+		function neuerKnopf() {
+			// alten Knopf entfernen
+			var alterKnopf = document.getElementById("knopf");
+			alterKnopf.parentNode.removeChild(alterKnopf);
+			
+			// neuen Knopf erstellen
+			var neuerKnopf = document.createElement("button");
+			neuerKnopf.className = "button";
+			neuerKnopf.id = "knopf";
+			neuerKnopf.onclick = function() {neuerKnopfClick()};
+			
+			// zufällige Position generieren
+			var breite = window.innerWidth - neuerKnopf.offsetWidth;
+			var hoehe = window.innerHeight - neuerKnopf.offsetHeight;
+			var x = Math.floor(Math.random() * breite);
+			var y = Math.floor(Math.random() * hoehe);
+			
+			// Knopf-Stil und Position setzen
+			neuerKnopf.style.left = x + "px";
+			neuerKnopf.style.top = y + "px";
+			
+			// neuen Knopf hinzufügen
+			document.body.appendChild(neuerKnopf);
+		}
+function neuerKnopfClick() {
+    neuerKnopf();
+}
+	</script>
+</body>
+</html>
